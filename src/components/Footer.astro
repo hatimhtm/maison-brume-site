@@ -1,0 +1,87 @@
+---
+import { content, type Locale, EMAIL, waLink } from "../lib/content";
+import { path } from "../lib/paths";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = content[locale];
+const year = new Date().getFullYear();
+const wa = waLink(locale);
+---
+
+<footer class="ft">
+  <div class="wrap">
+    <hr class="rule" />
+    <div class="ft__in">
+      <div class="ft__brand">
+        <p class="ft__name">Maison&nbsp;Brume</p>
+        <p class="ft__tag">{t.footer.tagline}</p>
+      </div>
+      <nav class="ft__nav" aria-label="Footer">
+        <a class="link" href={path("/work", locale)}>{t.nav.work}</a>
+        <a class="link" href={path("/studio", locale)}>{t.nav.studio}</a>
+        <a class="link" href={path("/contact", locale)}>{t.nav.contact}</a>
+      </nav>
+      <div class="ft__reach">
+        <a class="btn ft__wa" href={wa} target="_blank" rel="noopener"
+          >{t.contact.whatsapp}</a
+        >
+        <a class="link ft__mail" href={`mailto:${EMAIL}`}>{t.contact.email}</a>
+      </div>
+    </div>
+    <p class="ft__legal">© {year} Maison Brume. {t.footer.rights}</p>
+  </div>
+</footer>
+
+<style>
+  .ft {
+    padding-block: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .ft__in {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem 4rem;
+    justify-content: space-between;
+    padding-top: clamp(2.5rem, 5vw, 4.5rem);
+  }
+  .ft__name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    letter-spacing: 0.02em;
+  }
+  .ft__tag {
+    color: var(--color-stone);
+    font-size: 0.92rem;
+    margin-top: 0.4rem;
+    max-width: 22rem;
+  }
+  .ft__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    font-size: 0.86rem;
+    letter-spacing: 0.06em;
+  }
+  .ft__nav a { min-height: 44px; display: inline-flex; align-items: center; }
+  .ft__reach {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .ft__mail {
+    font-size: 0.86rem;
+    letter-spacing: 0.06em;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .ft__legal {
+    margin-top: clamp(3rem, 7vw, 6rem);
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    color: var(--color-stone);
+  }
+</style>

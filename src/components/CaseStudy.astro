@@ -1,0 +1,159 @@
+---
+import { content, type Locale, type Slug, WORK_SLUGS, LIVE, waLink } from "../lib/content";
+import { path } from "../lib/paths";
+
+interface Props {
+  locale: Locale;
+  slug: Slug;
+}
+const { locale, slug } = Astro.props;
+const t = content[locale];
+const c = t.cases[slug];
+const L = t.caseLabels;
+const i = WORK_SLUGS.indexOf(slug);
+const next = WORK_SLUGS[(i + 1) % WORK_SLUGS.length];
+const nextItem = t.work.items[next];
+const rows = [
+  { k: L.brief, v: c.brief },
+  { k: L.approach, v: c.approach },
+  { k: L.craft, v: c.craft },
+  { k: L.result, v: c.result },
+];
+const wa = waLink(
+  locale,
+  locale === "fr"
+    ? `une maison comme ${c.name}.`
+    : `a house like ${c.name}.`,
+);
+---
+
+<article class="cs">
+  <div class="wrap">
+    <a class="cs__back link" href={path("/work", locale)}>← {t.work.back}</a>
+
+    <header class="cs__head reveal">
+      <p class="eyebrow">{c.kind}</p>
+      <h1 class="cs__title">{c.name}</h1>
+      <a class="btn cs__live" href={LIVE[slug]} target="_blank" rel="noopener">
+        {t.work.live} ↗
+      </a>
+    </header>
+
+    <dl class="cs__rows">
+      {
+        rows.map((r) => (
+          <div class="cs__row reveal">
+            <dt>{r.k}</dt>
+            <dd>{r.v}</dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <div class="cs__cta reveal">
+      <p class="cs__cta-lead">{t.work.caseLead}</p>
+      <a class="btn" href={wa} target="_blank" rel="noopener">
+        {t.work.caseCta}<span class="cs__sr"> (WhatsApp)</span>
+      </a>
+    </div>
+
+    <a class="cs__next reveal" href={path(`/work/${next}`, locale)}>
+      <span class="cs__next-k">{t.work.view} →</span>
+      <span class="cs__next-n">{nextItem.name}</span>
+      <span class="cs__next-d">{nextItem.kind}</span>
+    </a>
+  </div>
+</article>
+
+<style>
+  .cs { padding-block: clamp(7rem, 12vw, 11rem) var(--section-y); }
+  .cs__back {
+    display: inline-block;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+    margin-bottom: clamp(3rem, 8vw, 6rem);
+  }
+  .cs__title {
+    margin-top: 1rem;
+    font-variation-settings: "opsz" 144, "SOFT" 70;
+  }
+  .cs__live { margin-top: clamp(2rem, 4vw, 3rem); }
+  .cs__rows {
+    margin-top: clamp(4rem, 9vw, 7rem);
+    border-top: 1px solid var(--color-fog);
+  }
+  .cs__row {
+    display: grid;
+    grid-template-columns: minmax(0, 11rem) 1fr;
+    gap: clamp(1rem, 5vw, 4rem);
+    padding-block: clamp(2rem, 4vw, 3rem);
+    border-bottom: 1px solid var(--color-fog);
+  }
+  .cs__row dt {
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+    padding-top: 0.35rem;
+  }
+  .cs__row dd {
+    margin: 0;
+    max-width: 46ch;
+    font-size: var(--text-lead);
+    line-height: 1.55;
+    color: var(--color-ink-soft);
+  }
+  .cs__cta {
+    margin-top: clamp(3.5rem, 8vw, 6rem);
+  }
+  .cs__cta-lead {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    line-height: 1.2;
+    max-width: 20ch;
+    margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+    font-variation-settings: "opsz" 48, "SOFT" 50;
+  }
+  .cs__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .cs__next {
+    display: block;
+    margin-top: clamp(4rem, 9vw, 7rem);
+    padding-top: clamp(2rem, 4vw, 3rem);
+    border-top: 1px solid var(--color-ink);
+  }
+  .cs__next-k {
+    font-size: 0.76rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+  }
+  .cs__next-n {
+    display: block;
+    margin-top: 0.75rem;
+    font-family: var(--font-display);
+    font-size: var(--text-h2);
+    line-height: 1.05;
+    transition: transform var(--dur) var(--ease);
+  }
+  .cs__next:hover .cs__next-n { transform: translateX(0.5rem); }
+  .cs__next-d {
+    display: block;
+    margin-top: 0.6rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+  }
+  @media (max-width: 40rem) {
+    .cs__row { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+</style>

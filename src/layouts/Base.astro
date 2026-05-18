@@ -1,0 +1,92 @@
+---
+import "@fontsource-variable/fraunces";
+import "@fontsource-variable/schibsted-grotesk";
+import "../styles/global.css";
+import { content, type Locale } from "../lib/content";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  locale: Locale;
+  title?: string;
+  description?: string;
+}
+
+const { locale } = Astro.props;
+const t = content[locale];
+const title = Astro.props.title ?? t.meta.title;
+const description = Astro.props.description ?? t.meta.description;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang={t.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#EBE7DF" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content={locale === "fr" ? "fr_FR" : "en_US"} />
+    <meta name="robots" content="index,follow" />
+  </head>
+  <body>
+    <a href="#main" class="sr-skip">Skip to content</a>
+    <Nav locale={locale} />
+    <main id="main" tabindex="-1"><slot /></main>
+    <Footer locale={locale} />
+
+    <style>
+      .sr-skip {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        background: var(--color-ink);
+        color: var(--color-bone);
+        padding: 0.75rem 1.25rem;
+        z-index: 100;
+      }
+      .sr-skip:focus { left: 0; }
+    </style>
+
+    <script>
+      // Restrained reveal — one entrance, once, respects reduced motion.
+      const rm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const els = document.querySelectorAll<HTMLElement>(".reveal");
+      if (rm || !("IntersectionObserver" in window)) {
+        els.forEach((e) => e.classList.add("is-in"));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const en of entries) {
+              if (en.isIntersecting) {
+                (en.target as HTMLElement).classList.add("is-in");
+                io.unobserve(en.target);
+              }
+            }
+          },
+          { rootMargin: "0px 0px -12% 0px", threshold: 0.1 },
+        );
+        els.forEach((e) => io.observe(e));
+      }
+
+      // Smooth scroll only where it helps: fine pointer, motion allowed.
+      // Native scroll on touch is faster and never janks — leave it.
+      const fine = window.matchMedia("(pointer: fine)").matches;
+      if (fine && !rm) {
+        import("lenis").then(({ default: Lenis }) => {
+          const lenis = new Lenis({ duration: 1.05, smoothWheel: true });
+          const raf = (time: number) => {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+          };
+          requestAnimationFrame(raf);
+        });
+      }
+    </script>
+  </body>
+</html>

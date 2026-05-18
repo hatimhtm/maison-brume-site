@@ -1,0 +1,116 @@
+---
+import { content, type Locale, WORK_SLUGS, waLink } from "../lib/content";
+import { path } from "../lib/paths";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = content[locale];
+const wa = waLink(locale);
+---
+
+<section class="wi">
+  <div class="wrap">
+    <header class="wi__head reveal">
+      <p class="eyebrow">{t.work.eyebrow}</p>
+      <h1 class="wi__title">{t.work.title}</h1>
+      <p class="lead measure wi__framing">{t.work.framing}</p>
+    </header>
+    <ul class="wi__list">
+      {
+        WORK_SLUGS.map((slug, i) => {
+          const it = t.work.items[slug];
+          return (
+            <li class="wi__item reveal">
+              <a class="wi__link" href={path(`/work/${slug}`, locale)}>
+                <span class="wi__no">{String(i + 1).padStart(2, "0")}</span>
+                <span class="wi__body">
+                  <span class="wi__name">{it.name}</span>
+                  <span class="wi__kind">{it.kind}</span>
+                  <span class="wi__line">{it.line}</span>
+                </span>
+                <span class="wi__view" aria-hidden="true">{t.work.view} →</span>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+    <div class="wi__close reveal">
+      <p class="wi__close-t">{t.work.closing}</p>
+      <a class="btn" href={wa} target="_blank" rel="noopener">{t.work.closingCta}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .wi { padding-block: clamp(8rem, 14vw, 13rem) var(--section-y); }
+  .wi__head { margin-bottom: clamp(3rem, 7vw, 5.5rem); max-width: 20ch; }
+  .wi__title { margin-top: 1.25rem; }
+  .wi__framing { margin-top: 1.5rem; color: var(--color-ink-soft); }
+  .wi__close {
+    margin-top: clamp(3.5rem, 8vw, 6rem);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem 2rem;
+  }
+  .wi__close-t {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    font-variation-settings: "opsz" 48, "SOFT" 50;
+  }
+  .wi__list { list-style: none; padding: 0; }
+  .wi__item { border-top: 1px solid var(--color-fog); }
+  .wi__item:last-child { border-bottom: 1px solid var(--color-fog); }
+  .wi__link {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr auto;
+    gap: clamp(1rem, 4vw, 3rem);
+    align-items: start;
+    padding-block: clamp(2rem, 4.5vw, 3.5rem);
+    transition: padding-left var(--dur) var(--ease);
+  }
+  .wi__link:hover { padding-left: 0.75rem; }
+  .wi__no {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--color-stone);
+    padding-top: 0.5rem;
+  }
+  .wi__name {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    line-height: 1.1;
+  }
+  .wi__kind {
+    display: block;
+    margin-top: 0.6rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+  }
+  .wi__line {
+    display: block;
+    margin-top: 1rem;
+    max-width: 38ch;
+    color: var(--color-ink-soft);
+  }
+  .wi__view {
+    align-self: center;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+    white-space: nowrap;
+  }
+  .wi__link:hover .wi__view { color: var(--color-ink); }
+  @media (max-width: 40rem) {
+    .wi__link { grid-template-columns: 1fr; gap: 0.5rem; }
+    .wi__no { display: none; }
+    .wi__view { margin-top: 1rem; }
+  }
+</style>

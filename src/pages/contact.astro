@@ -1,0 +1,10 @@
+---
+import Base from "../layouts/Base.astro";
+import Contact from "../components/Contact.astro";
+import { content } from "../lib/content";
+const t = content.en;
+---
+
+<Base locale="en" title={`${t.contact.title} — Maison Brume`}>
+  <Contact locale="en" />
+</Base>

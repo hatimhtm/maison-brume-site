@@ -1,0 +1,28 @@
+---
+import Base from "../layouts/Base.astro";
+import { path } from "../lib/paths";
+import { waLink } from "../lib/content";
+const wa = waLink("en");
+---
+
+<Base locale="en" title="Not found — Maison Brume">
+  <section class="nf">
+    <div class="wrap">
+      <p class="eyebrow">404</p>
+      <h1 class="nf__t">This page slipped into the brume.</h1>
+      <div class="nf__cta btn-row">
+        <a class="btn" href={wa} target="_blank" rel="noopener">Message the studio</a>
+        <a class="btn btn--ghost" href={path("/", "en")}>Return home</a>
+      </div>
+    </div>
+  </section>
+  <style>
+    .nf {
+      min-height: 78svh;
+      display: flex;
+      align-items: center;
+      padding-block: 8rem 4rem;
+    }
+    .nf__t { max-width: 16ch; margin: 1.5rem 0 2.5rem; }
+  </style>
+</Base>

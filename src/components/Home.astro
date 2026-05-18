@@ -1,0 +1,198 @@
+---
+import { content, type Locale, WORK_SLUGS, waLink } from "../lib/content";
+import { path } from "../lib/paths";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = content[locale];
+const wa = waLink(locale);
+---
+
+<!-- HERO ─ editorial, left-anchored, no centred-stock layout -->
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow reveal">{t.hero.eyebrow}</p>
+    <h1 class="hero__title reveal">{t.hero.title}</h1>
+    <div class="hero__base reveal">
+      <p class="lead measure">{t.hero.lead}</p>
+      <div class="hero__meta">
+        <span class="hero__place">{t.hero.place}</span>
+        <div class="hero__cta btn-row">
+          <a class="btn" href={wa} target="_blank" rel="noopener">{t.hero.b}</a>
+          <a class="btn btn--ghost" href={path("/work", locale)}>{t.hero.a}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO ─ the point of view -->
+<section class="band">
+  <div class="wrap band__grid">
+    <p class="eyebrow reveal">{t.manifesto.eyebrow}</p>
+    <div class="reveal">
+      <h2 class="band__title">{t.manifesto.title}</h2>
+      <p class="lead measure band__body">{t.manifesto.body}</p>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED WORK -->
+<section class="work">
+  <div class="wrap">
+    <div class="work__head reveal">
+      <p class="eyebrow">{t.work.eyebrow}</p>
+      <h2 class="work__title">{t.work.title}</h2>
+    </div>
+    <ul class="work__list">
+      {
+        WORK_SLUGS.map((slug, i) => {
+          const it = t.work.items[slug];
+          return (
+            <li class="work__item reveal">
+              <a class="work__link" href={path(`/work/${slug}`, locale)}>
+                <span class="work__no">{String(i + 1).padStart(2, "0")}</span>
+                <span class="work__body">
+                  <span class="work__name">{it.name}</span>
+                  <span class="work__kind">{it.kind}</span>
+                  <span class="work__line">{it.line}</span>
+                </span>
+                <span class="work__view" aria-hidden="true">{t.work.view} →</span>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- HOW IT BEGINS -->
+<section class="band band--alt">
+  <div class="wrap band__grid">
+    <p class="eyebrow reveal">{t.begins.eyebrow}</p>
+    <div class="reveal">
+      <h2 class="band__title">{t.begins.title}</h2>
+      <p class="lead measure band__body">{t.begins.body}</p>
+      <div class="band__more btn-row">
+        <a class="btn" href={wa} target="_blank" rel="noopener">{t.hero.b}</a>
+        <a class="link" href={path("/contact", locale)}>{t.contact.title}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-block: 9rem 4rem;
+  }
+  .hero .eyebrow { margin-bottom: clamp(1.5rem, 4vw, 2.5rem); }
+  .hero__title {
+    max-width: 18ch;
+    white-space: pre-line; /* honor the deliberate line break in the hero */
+    font-variation-settings: "opsz" 144, "SOFT" 70, "WONK" 1;
+  }
+  .hero__base {
+    margin-top: clamp(2.5rem, 6vw, 5rem);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 4vw, 3rem);
+  }
+  .hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem 2rem;
+    border-top: 1px solid var(--color-fog);
+    padding-top: 1.5rem;
+  }
+  .hero__place {
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+  }
+  .hero__cta {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  /* .btn is global (see global.css) */
+
+  .band { padding-block: var(--section-y); }
+  .band--alt { background: var(--color-paper); }
+  .band__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 12rem) 1fr;
+    gap: clamp(1.5rem, 5vw, 5rem);
+  }
+  .band__title { margin-bottom: 1.5rem; }
+  .band__body { color: var(--color-ink-soft); }
+  .band__more { margin-top: clamp(2rem, 4vw, 3rem); }
+  @media (max-width: 48rem) {
+    .band__grid { grid-template-columns: 1fr; gap: 1.25rem; }
+  }
+
+  .work { padding-block: var(--section-y); }
+  .work__head { margin-bottom: clamp(2.5rem, 6vw, 4.5rem); }
+  .work__title { margin-top: 1rem; max-width: 18ch; }
+  .work__list { list-style: none; padding: 0; }
+  .work__item { border-top: 1px solid var(--color-fog); }
+  .work__item:last-child { border-bottom: 1px solid var(--color-fog); }
+  .work__link {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr auto;
+    gap: clamp(1rem, 4vw, 3rem);
+    align-items: start;
+    padding-block: clamp(2rem, 4vw, 3.25rem);
+    transition: padding-left var(--dur) var(--ease);
+  }
+  .work__link:hover { padding-left: 0.75rem; }
+  .work__no {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--color-stone);
+    padding-top: 0.4rem;
+  }
+  .work__name {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    line-height: 1.1;
+  }
+  .work__kind {
+    display: block;
+    margin-top: 0.6rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+  }
+  .work__line {
+    display: block;
+    margin-top: 1rem;
+    max-width: 34ch;
+    color: var(--color-ink-soft);
+  }
+  .work__view {
+    align-self: center;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+    white-space: nowrap;
+  }
+  .work__link:hover .work__view { color: var(--color-ink); }
+  @media (max-width: 40rem) {
+    .work__link { grid-template-columns: 1fr; gap: 0.5rem; }
+    .work__no { display: none; }
+    .work__view { margin-top: 1rem; }
+  }
+</style>

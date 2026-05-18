@@ -1,0 +1,10 @@
+---
+import Base from "../layouts/Base.astro";
+import Studio from "../components/Studio.astro";
+import { content } from "../lib/content";
+const t = content.en;
+---
+
+<Base locale="en" title={`${t.studio.eyebrow} — Maison Brume`}>
+  <Studio locale="en" />
+</Base>

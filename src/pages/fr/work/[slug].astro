@@ -1,0 +1,20 @@
+---
+import Base from "../../../layouts/Base.astro";
+import CaseStudy from "../../../components/CaseStudy.astro";
+import { content, WORK_SLUGS, type Slug } from "../../../lib/content";
+
+export function getStaticPaths() {
+  return WORK_SLUGS.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params as { slug: Slug };
+const c = content.fr.cases[slug];
+---
+
+<Base
+  locale="fr"
+  title={`${c.name} — Maison Brume`}
+  description={`${c.kind}. ${c.result}`}
+>
+  <CaseStudy locale="fr" slug={slug} />
+</Base>

@@ -1,0 +1,136 @@
+---
+import { content, type Locale, EMAIL, CAL, waLink } from "../lib/content";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = content[locale];
+const wa = waLink(locale);
+const secondary = [
+  { k: t.contact.call, v: "cal.com", href: CAL, ext: true },
+  { k: t.contact.email, v: EMAIL, href: `mailto:${EMAIL}`, ext: false },
+];
+---
+
+<section class="ct">
+  <div class="wrap">
+    <header class="ct__head reveal">
+      <p class="eyebrow">{t.contact.eyebrow}</p>
+      <h1 class="ct__title">{t.contact.title}</h1>
+      <p class="lead measure ct__body">{t.contact.body}</p>
+      <p class="ct__direct">{t.contact.direct}</p>
+    </header>
+
+    <a class="ct__wa reveal" href={wa} target="_blank" rel="noopener">
+      <span class="ct__wa-k">{t.contact.whatsapp}</span>
+      <span class="ct__wa-v">+212 602 450 006</span>
+      <span class="ct__wa-arr" aria-hidden="true">↗</span>
+      <span class="ct__sr"> (opens WhatsApp)</span>
+    </a>
+
+    <ul class="ct__list reveal">
+      {
+        secondary.map((ch) => (
+          <li class="ct__row">
+            <a
+              class="ct__link"
+              href={ch.href}
+              {...ch.ext ? { target: "_blank", rel: "noopener" } : {}}
+            >
+              <span class="ct__k">{ch.k}</span>
+              <span class="ct__v">{ch.v}</span>
+              <span class="ct__arr" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .ct { padding-block: clamp(8rem, 14vw, 13rem) var(--section-y); }
+  .ct__head { max-width: 32ch; }
+  .ct__title { margin-top: 1.25rem; }
+  .ct__body { margin-top: 1.75rem; color: var(--color-ink-soft); }
+  .ct__direct {
+    margin-top: 1.25rem;
+    max-width: 38ch;
+    color: var(--color-stone);
+    font-size: 0.95rem;
+  }
+
+  /* WhatsApp = the dominant action (funnel audit #5). */
+  .ct__wa {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 0.5rem 1.5rem;
+    margin-top: clamp(3rem, 7vw, 5rem);
+    padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.5rem, 4vw, 2.5rem);
+    background: var(--color-ink);
+    color: var(--color-bone);
+    transition: transform var(--dur) var(--ease);
+  }
+  .ct__wa:hover { transform: translateY(-2px); }
+  .ct__wa-k {
+    grid-column: 1 / -1;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-fog);
+  }
+  .ct__wa-v {
+    font-family: var(--font-display);
+    font-size: var(--text-h2);
+    line-height: 1;
+  }
+  .ct__wa-arr { font-size: 1.5rem; align-self: center; }
+  .ct__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .ct__list {
+    list-style: none;
+    padding: 0;
+    margin-top: clamp(2rem, 4vw, 3rem);
+    border-top: 1px solid var(--color-fog);
+  }
+  .ct__row { border-bottom: 1px solid var(--color-fog); }
+  .ct__link {
+    display: grid;
+    grid-template-columns: minmax(0, 9rem) 1fr auto;
+    align-items: baseline;
+    gap: clamp(1rem, 4vw, 3rem);
+    padding-block: clamp(1.25rem, 3vw, 1.9rem);
+    min-height: 44px;
+    transition: padding-left var(--dur) var(--ease);
+  }
+  .ct__link:hover { padding-left: 0.6rem; }
+  .ct__k {
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+  }
+  .ct__v {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+  }
+  .ct__arr { align-self: center; color: var(--color-stone); }
+  .ct__link:hover .ct__arr { color: var(--color-ink); }
+  @media (max-width: 40rem) {
+    .ct__link { grid-template-columns: 1fr auto; gap: 0.35rem 1rem; }
+    .ct__k { grid-column: 1 / -1; }
+    .ct__wa-v { font-size: var(--text-h3); }
+  }
+</style>

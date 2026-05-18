@@ -1,0 +1,10 @@
+---
+import Base from "../../layouts/Base.astro";
+import WorkIndex from "../../components/WorkIndex.astro";
+import { content } from "../../lib/content";
+const t = content.en;
+---
+
+<Base locale="en" title={`${t.work.title} — Maison Brume`}>
+  <WorkIndex locale="en" />
+</Base>
