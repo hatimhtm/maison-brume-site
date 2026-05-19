@@ -104,10 +104,10 @@ const wa = waLink(locale);
   .hero {
     position: relative;
     isolation: isolate;
-    min-height: 100svh;
+    min-height: 90svh;
     display: flex;
     align-items: center;
-    padding-block: 9rem 4rem;
+    padding-block: clamp(7rem, 16vh, 10rem) clamp(3rem, 8vh, 5rem);
     overflow: hidden;
   }
   .hero__content { position: relative; z-index: 1; }
@@ -168,7 +168,7 @@ const wa = waLink(locale);
   .work__item:last-child { border-bottom: 1px solid var(--color-fog); }
   .work__link {
     display: grid;
-    grid-template-columns: minmax(0, 46%) 1fr;
+    grid-template-columns: minmax(0, 52%) 1fr;
     gap: clamp(1.5rem, 5vw, 4rem);
     align-items: center;
     padding-block: clamp(2.25rem, 5vw, 4rem);
