@@ -99,6 +99,23 @@ export const content = {
         { name: "Rebrands & redesigns", outcome: "Same brand, finally dressed right. The single change that makes everything after it look more expensive." },
       ],
       cta: "Tell me what you need",
+      teaser: "What I build",
+      teaserMore: "See all services",
+    },
+    process: {
+      eyebrow: "How it works",
+      title: "From first message to a site that is yours.",
+      steps: [
+        { k: "01", t: "Study", d: "I look at your business, your product and your customer — before a single pixel." },
+        { k: "02", t: "Concept", d: "A tailored concept of your site, designed for you to see before any commitment." },
+        { k: "03", t: "Build", d: "If it moves you, I build it — fast, complete, tested, in your voice." },
+        { k: "04", t: "Yours", d: "Shipped and handed over. Static, fast, hosted anywhere. No lock-in, no retainer." },
+      ],
+    },
+    close: {
+      eyebrow: "Start",
+      title: "If your product is ready and your site isn't, that is the whole conversation.",
+      body: "One message. I reply myself — with a direction worth looking at, or an honest reason it isn't the moment.",
     },
     studio: {
       eyebrow: "Studio",
@@ -227,6 +244,23 @@ export const content = {
         { name: "Refontes & rebranding", outcome: "La même marque, enfin bien habillée. Le seul changement qui rend tout le reste plus cher." },
       ],
       cta: "Dites-moi ce qu'il vous faut",
+      teaser: "Ce que je construis",
+      teaserMore: "Voir toutes les prestations",
+    },
+    process: {
+      eyebrow: "Comment ça marche",
+      title: "Du premier message à un site qui est le vôtre.",
+      steps: [
+        { k: "01", t: "Étude", d: "J'examine votre activité, votre produit et votre client — avant le moindre pixel." },
+        { k: "02", t: "Concept", d: "Un concept sur mesure de votre site, à voir avant tout engagement." },
+        { k: "03", t: "Construction", d: "S'il vous touche, je le construis — vite, complet, testé, dans votre voix." },
+        { k: "04", t: "À vous", d: "Livré et remis. Statique, rapide, hébergeable partout. Sans dépendance, sans abonnement." },
+      ],
+    },
+    close: {
+      eyebrow: "Commencer",
+      title: "Si votre produit est prêt et pas votre site, c'est toute la conversation.",
+      body: "Un message. Je réponds moi-même — avec une direction qui mérite le regard, ou une raison honnête que ce n'est pas le moment.",
     },
     studio: {
       eyebrow: "Le studio",
