@@ -29,7 +29,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
       locale === "en" && (
         <script
           is:inline
-          set:html={`(function(){try{var b=${JSON.stringify(base)};var s=null;try{s=localStorage.getItem('mb-lang')}catch(e){}var fr=s?s==='fr':(navigator.languages||[navigator.language||'']).some(function(l){return /^fr/i.test(l)});if(!fr)return;var p=location.pathname;var r=p.indexOf(b)===0?p.slice(b.length):p;if(/^\\/fr(\\/|$)/.test(r))return;location.replace(b+'/fr'+(r==='/'||r===''?'/':r)+location.search+location.hash);}catch(e){}})();`}
+          set:html={`(function(){try{var b=${JSON.stringify(base)};var s=null;try{s=localStorage.getItem('mb-lang')}catch(e){}var en;if(s){en=s==='en'}else{var L=(navigator.languages&&navigator.languages[0])||navigator.language||'';en=/^en/i.test(L)}if(en)return;var p=location.pathname;var r=p.indexOf(b)===0?p.slice(b.length):p;if(/^\\/fr(\\/|$)/.test(r))return;location.replace(b+'/fr'+(r==='/'||r===''?'/':r)+location.search+location.hash);}catch(e){}})();`}
         />
       )
     }
