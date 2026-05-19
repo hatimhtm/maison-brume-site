@@ -191,26 +191,26 @@
     transform-origin: left;
   }
 
-  /* Reveal — single restrained entrance. Hidden state applies ONLY when
-     <html class="js"> is set, so no-JS / JS-failure shows everything. */
-  .reveal { transition: opacity 1s var(--ease), transform 1s var(--ease); }
-  html.js .reveal {
-    opacity: 0;
-    transform: translateY(18px);
-    will-change: opacity, transform;
+  /* Entrance — CSS-ONLY, on load, fill-mode both. Content is ALWAYS
+     visible (the keyframes end visible and never depend on JS or scroll).
+     Nothing here can ever leave an image hidden. Lesson learned. */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { animation: mb-rise 0.9s var(--ease) both; }
+    .reveal--img { animation: mb-clip 1.2s var(--ease) both; }
+    .reveal--img img { animation: mb-scale 1.6s var(--ease) both; }
   }
-  html.js .reveal.is-in {
-    opacity: 1;
-    transform: none;
+  @keyframes mb-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: none; }
   }
-
-  /* Image reveal — clipped curtain + slow settle. The premium tell. */
-  .reveal--img { transition: clip-path 1.3s var(--ease); }
-  html.js .reveal--img { clip-path: inset(0 0 100% 0); }
-  html.js .reveal--img.is-in { clip-path: inset(0 0 0 0); }
-  .reveal--img img { transition: transform 1.6s var(--ease); }
-  html.js .reveal--img img { transform: scale(1.07); }
-  html.js .reveal--img.is-in img { transform: scale(1); }
+  @keyframes mb-clip {
+    from { clip-path: inset(0 0 100% 0); }
+    to { clip-path: inset(0 0 0 0); }
+  }
+  @keyframes mb-scale {
+    from { transform: scale(1.07); }
+    to { transform: scale(1); }
+  }
 
   /* SVG ornament — quiet maker's-mark detail */
   .ornament {

@@ -54,29 +54,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     </style>
 
     <script>
-      // Mark JS available — CSS hides reveal elements ONLY when .js is set,
-      // so a JS failure can never leave images permanently clipped.
-      document.documentElement.classList.add("js");
-
-      // Restrained reveal — one entrance, once, respects reduced motion.
+      // Entrance is now pure CSS (see global.css) — no JS gates visibility.
       const rm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const els = document.querySelectorAll<HTMLElement>(".reveal, .reveal--img");
-      if (rm || !("IntersectionObserver" in window)) {
-        els.forEach((e) => e.classList.add("is-in"));
-      } else {
-        const io = new IntersectionObserver(
-          (entries) => {
-            for (const en of entries) {
-              if (en.isIntersecting) {
-                (en.target as HTMLElement).classList.add("is-in");
-                io.unobserve(en.target);
-              }
-            }
-          },
-          { rootMargin: "0px 0px -12% 0px", threshold: 0.1 },
-        );
-        els.forEach((e) => io.observe(e));
-      }
 
       // Smooth scroll only where it helps: fine pointer, motion allowed.
       // Native scroll on touch is faster and never janks — leave it.
