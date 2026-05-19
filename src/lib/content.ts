@@ -41,7 +41,7 @@ export const LIVE: Record<Slug, string> = {
 export const content = {
   en: {
     htmlLang: "en",
-    nav: { work: "Work", studio: "Studio", contact: "Contact", cta: "Start a conversation" },
+    nav: { work: "Work", services: "Services", studio: "Studio", contact: "Contact", cta: "Start a conversation" },
     meta: {
       title: "Maison Brume — Editorial web design for fashion houses",
       description:
@@ -68,6 +68,8 @@ export const content = {
       closingCta: "Message the studio",
       caseLead: "Convinced? The studio is one message away.",
       caseCta: "Message about a house like this",
+      plainLabel: "In plain terms",
+      fullCaption: "The site, top to bottom",
       view: "View",
       live: "View live",
       back: "All work",
@@ -83,6 +85,20 @@ export const content = {
       eyebrow: "How it begins",
       title: "No deck. No discovery retainer.",
       body: "I study your business, then design a tailored concept of your site — yours to see before any commitment. If it moves you, we build it. If it doesn't, you keep the thinking.",
+    },
+    services: {
+      eyebrow: "Services",
+      title: "What I can build for your business.",
+      intro: "Not just a pretty page. The whole machine behind it — the site, the dashboard, the automations that run while you sleep.",
+      items: [
+        { name: "One-page sites", outcome: "One scroll, one message, launched fast. For a collection, a drop, a single statement that has to land." },
+        { name: "Multipage sites", outcome: "A full brand world — story, collection, atelier, contact. Room for the house to breathe and the customer to wander." },
+        { name: "Business dashboards", outcome: "See everything in one place — sales, clients, stock, orders, what is working and what is leaking. Stop running the business from spreadsheets and memory." },
+        { name: "AI assistants & bots", outcome: "A concierge that answers, qualifies and books — on the site and on WhatsApp — at 3am, in your voice, without you." },
+        { name: "Email & message automation", outcome: "Follow-ups that send themselves. Welcome, remind, recover the abandoned order, re-engage the quiet client — without you remembering to." },
+        { name: "Rebrands & redesigns", outcome: "Same house, finally dressed right. The single change that makes everything after it look more expensive." },
+      ],
+      cta: "Tell me what you need",
     },
     studio: {
       eyebrow: "Studio",
@@ -114,6 +130,7 @@ export const content = {
         approach: "Editorial pacing over commerce. A pinned horizontal atelier sequence, a drag-snap collection, smooth-scroll choreography. Restraint made the brand's voice.",
         craft: "Cormorant Garamond paired with Markazi Text so the Arabic reads as composed editorial, not a flipped Latin layout. Around 3,200 lines, no framework, deploys anywhere.",
         result: "A prototype that reads like a house, not a theme.",
+        plain: "In plain terms: a brand-new label that looks established and expensive from its first day online — the kind of first impression that lets a house charge what it is worth.",
       },
       "nota-parfum": {
         name: "Nota Parfum", kind: "Fès perfume house · concept",
@@ -121,6 +138,7 @@ export const content = {
         approach: "An unsolicited, fully-built proposal — their real catalogue, prices and voice baked in. The argument made by showing, not pitching.",
         craft: "An Astro component system, an opening ritual, fragrance cards, WhatsApp-native ordering, fully tested.",
         result: "A complete site, delivered before the conversation. The method, made tangible.",
+        plain: "In plain terms: instead of a pitch deck, they got a finished site with their own products already in it — the fastest possible way to show what working together actually feels like.",
       },
       "cgs-language-services": {
         name: "CGS Language Services", kind: "Translation house · shipped to production",
@@ -128,6 +146,7 @@ export const content = {
         approach: "One promise — 24-hour, university-accepted document translation — carried through a WhatsApp-first funnel. No portals, no service bloat. Motion and type tuned to read admissions-grade, not corporate-template.",
         craft: "Four-language i18n with language-aware dir and lang, Arabic flipping to right-to-left at the root via logical properties so every layout stays mirror-correct. React, Vite, Tailwind, Framer Motion. Around 2,000 lines, shipped to production.",
         result: "A four-language site live for a real agency — Arabic composed, not bolted on.",
+        plain: "In plain terms: a translation business that now looks as trustworthy as the universities it serves — in four languages — and turns visitors into WhatsApp enquiries instead of losing them.",
       },
       "china-global-study": {
         name: "China Global Study", kind: "Placement agency · shipped, in daily use",
@@ -135,6 +154,7 @@ export const content = {
         approach: "One pipeline, end to end — eight stages from inquiry to enrolled, drag-and-drop, money tracked where it belongs, document state at a glance. Built to be lived in, not demoed.",
         craft: "Next.js on Supabase — seven referential tables, payment status governed by strict rules, an eight-stage kanban, five swappable themes. Around 4,000 lines, shipped to production.",
         result: "The spreadsheets are gone. It is open every working day.",
+        plain: "In plain terms: the agency stopped losing students inside spreadsheets. Every applicant, payment and document is now one glance away — and the team actually opens it every day.",
       },
       infinitecs: {
         name: "InfiniteCS", kind: "Enterprise marketing site · showcase",
@@ -142,13 +162,14 @@ export const content = {
         approach: "Glassmorphism over deep slate, editorial scale, GSAP scroll choreography, animated impact figures, a single clear funnel — then the sections any serious B2B site needs, which the brief had left out.",
         craft: "Vite and vanilla JS — no framework, no backend, one static bundle. Design-token-driven, around 2,500 lines, eleven sections.",
         result: "The prospect shelved the project. The work was too good to bury — so it is here.",
+        plain: "In plain terms: even a project that never went live shows the standard — premium, considered, the exact opposite of a template.",
       },
     },
   },
 
   fr: {
     htmlLang: "fr",
-    nav: { work: "Travaux", studio: "Le studio", contact: "Contact", cta: "Engager la conversation" },
+    nav: { work: "Travaux", services: "Prestations", studio: "Le studio", contact: "Contact", cta: "Engager la conversation" },
     meta: {
       title: "Maison Brume — Design web éditorial pour maisons de mode",
       description:
@@ -175,6 +196,8 @@ export const content = {
       closingCta: "Écrire au studio",
       caseLead: "Convaincu ? Le studio est à un message près.",
       caseCta: "Écrire au sujet d'une maison comme celle-ci",
+      plainLabel: "En clair",
+      fullCaption: "Le site, de haut en bas",
       view: "Découvrir",
       live: "Voir en ligne",
       back: "Tous les travaux",
@@ -190,6 +213,20 @@ export const content = {
       eyebrow: "Comment cela commence",
       title: "Pas de présentation. Pas d'acompte de cadrage.",
       body: "J'étudie votre activité, puis je conçois un concept sur mesure de votre site — à voir avant tout engagement. S'il vous touche, nous le construisons. Sinon, la réflexion vous reste acquise.",
+    },
+    services: {
+      eyebrow: "Prestations",
+      title: "Ce que je peux construire pour votre activité.",
+      intro: "Pas seulement une belle page. Toute la mécanique derrière — le site, le tableau de bord, les automatisations qui tournent pendant que vous dormez.",
+      items: [
+        { name: "Sites une page", outcome: "Un seul défilement, un seul message, lancé vite. Pour une collection, un drop, une déclaration qui doit faire mouche." },
+        { name: "Sites multipages", outcome: "Un univers de marque complet — histoire, collection, atelier, contact. De l'espace pour que la maison respire." },
+        { name: "Tableaux de bord", outcome: "Tout voir au même endroit — ventes, clients, stock, commandes, ce qui marche et ce qui fuit. Finis le tableur et la mémoire." },
+        { name: "Assistants & bots IA", outcome: "Un concierge qui répond, qualifie et réserve — sur le site et sur WhatsApp — à 3h du matin, dans votre voix, sans vous." },
+        { name: "Automatisation e-mail & messages", outcome: "Des relances qui s'envoient seules. Accueillir, rappeler, récupérer le panier abandonné, réveiller le client silencieux — sans y penser." },
+        { name: "Refontes & rebranding", outcome: "La même maison, enfin bien habillée. Le seul changement qui rend tout le reste plus cher." },
+      ],
+      cta: "Dites-moi ce qu'il vous faut",
     },
     studio: {
       eyebrow: "Le studio",
@@ -221,6 +258,7 @@ export const content = {
         approach: "Le rythme éditorial avant le commerce. Une séquence atelier horizontale épinglée, une collection à défilement aimanté, une chorégraphie au scroll. La retenue est devenue la voix de la marque.",
         craft: "Cormorant Garamond associé à Markazi Text pour que l'arabe se lise comme un éditorial composé, et non comme une mise en page latine inversée. Environ 3 200 lignes, sans framework, déployable partout.",
         result: "Un prototype qui se lit comme une maison, pas comme un template.",
+        plain: "En clair : une toute jeune marque qui paraît établie et chère dès son premier jour en ligne — la première impression qui permet à une maison de facturer ce qu'elle vaut.",
       },
       "nota-parfum": {
         name: "Nota Parfum", kind: "Maison de parfum fassie · concept",
@@ -228,6 +266,7 @@ export const content = {
         approach: "Une proposition spontanée et entièrement construite — leur vrai catalogue, leurs prix et leur voix intégrés. La démonstration par la preuve, non par le discours.",
         craft: "Un système de composants Astro, un rituel d'ouverture, des cartes de fragrance, la commande native par WhatsApp, entièrement testé.",
         result: "Un site complet, livré avant la conversation. La méthode, rendue tangible.",
+        plain: "En clair : au lieu d'un dossier de présentation, ils ont reçu un site fini avec leurs propres produits dedans — la façon la plus rapide de montrer ce que travailler ensemble donne vraiment.",
       },
       "cgs-language-services": {
         name: "CGS Language Services", kind: "Maison de traduction · livré en production",
@@ -235,6 +274,7 @@ export const content = {
         approach: "Une seule promesse — la traduction de documents acceptée par les universités en 24 heures — portée par un tunnel WhatsApp d'abord. Pas de portail, pas de superflu. Mouvement et typographie réglés pour un ton d'admission, non corporate-template.",
         craft: "Une i18n en quatre langues avec dir et lang adaptés, l'arabe basculant de droite à gauche à la racine via les propriétés logiques pour que chaque mise en page reste correctement en miroir. React, Vite, Tailwind, Framer Motion. Environ 2 000 lignes, livré en production.",
         result: "Un site en quatre langues en ligne pour une vraie agence — l'arabe composé, non ajouté après coup.",
+        plain: "En clair : une activité de traduction qui paraît désormais aussi fiable que les universités qu'elle sert — en quatre langues — et qui transforme les visiteurs en demandes WhatsApp au lieu de les perdre.",
       },
       "china-global-study": {
         name: "China Global Study", kind: "Agence de placement · livré, en usage quotidien",
@@ -242,6 +282,7 @@ export const content = {
         approach: "Un pipeline unique, de bout en bout — huit étapes de la demande à l'inscription, glisser-déposer, l'argent suivi là où il doit l'être, l'état des documents d'un coup d'œil. Conçu pour être habité, non démontré.",
         craft: "Next.js sur Supabase — sept tables référentielles, un statut de paiement gouverné par des règles strictes, un kanban à huit étapes, cinq thèmes interchangeables. Environ 4 000 lignes, livré en production.",
         result: "Les tableurs ont disparu. Il est ouvert chaque jour ouvré.",
+        plain: "En clair : l'agence a cessé de perdre des étudiants dans des tableurs. Chaque candidat, paiement et document est désormais à un coup d'œil — et l'équipe l'ouvre vraiment chaque jour.",
       },
       infinitecs: {
         name: "InfiniteCS", kind: "Site corporate · démonstration",
@@ -249,6 +290,7 @@ export const content = {
         approach: "Glassmorphism sur ardoise profonde, échelle éditoriale, chorégraphie GSAP au scroll, chiffres d'impact animés, un tunnel unique et clair — puis les sections que tout site B2B sérieux exige et que le brief avait omises.",
         craft: "Vite et JS vanilla — sans framework, sans backend, un seul bundle statique. Piloté par des design tokens, environ 2 500 lignes, onze sections.",
         result: "Le prospect a remisé le projet. Le travail était trop abouti pour rester au tiroir — alors il est montré.",
+        plain: "En clair : même un projet jamais mis en ligne montre le niveau — premium, réfléchi, tout le contraire d'un template.",
       },
     },
   },

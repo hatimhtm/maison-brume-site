@@ -54,9 +54,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     </style>
 
     <script>
+      // Mark JS available — CSS hides reveal elements ONLY when .js is set,
+      // so a JS failure can never leave images permanently clipped.
+      document.documentElement.classList.add("js");
+
       // Restrained reveal — one entrance, once, respects reduced motion.
       const rm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const els = document.querySelectorAll<HTMLElement>(".reveal");
+      const els = document.querySelectorAll<HTMLElement>(".reveal, .reveal--img");
       if (rm || !("IntersectionObserver" in window)) {
         els.forEach((e) => e.classList.add("is-in"));
       } else {

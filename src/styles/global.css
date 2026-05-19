@@ -191,31 +191,26 @@
     transform-origin: left;
   }
 
-  /* Reveal — single restrained entrance. JS adds .is-in. */
-  .reveal {
+  /* Reveal — single restrained entrance. Hidden state applies ONLY when
+     <html class="js"> is set, so no-JS / JS-failure shows everything. */
+  .reveal { transition: opacity 1s var(--ease), transform 1s var(--ease); }
+  html.js .reveal {
     opacity: 0;
     transform: translateY(18px);
-    transition: opacity 1s var(--ease), transform 1s var(--ease);
     will-change: opacity, transform;
   }
-  .reveal.is-in {
+  html.js .reveal.is-in {
     opacity: 1;
     transform: none;
   }
 
   /* Image reveal — clipped curtain + slow settle. The premium tell. */
-  .reveal--img {
-    transform: none;
-    opacity: 1;
-    clip-path: inset(0 0 100% 0);
-    transition: clip-path 1.3s var(--ease);
-  }
-  .reveal--img.is-in { clip-path: inset(0 0 0 0); }
-  .reveal--img img {
-    transform: scale(1.07);
-    transition: transform 1.6s var(--ease);
-  }
-  .reveal--img.is-in img { transform: scale(1); }
+  .reveal--img { transition: clip-path 1.3s var(--ease); }
+  html.js .reveal--img { clip-path: inset(0 0 100% 0); }
+  html.js .reveal--img.is-in { clip-path: inset(0 0 0 0); }
+  .reveal--img img { transition: transform 1.6s var(--ease); }
+  html.js .reveal--img img { transform: scale(1.07); }
+  html.js .reveal--img.is-in img { transform: scale(1); }
 
   /* SVG ornament — quiet maker's-mark detail */
   .ornament {
