@@ -59,6 +59,10 @@ const wa = waLink(locale);
     gap: clamp(1rem, 5vw, 4rem);
     padding-block: clamp(2.25rem, 5vw, 3.5rem);
     border-bottom: 1px solid var(--color-fog);
+    transition: padding-left var(--dur) var(--ease);
+  }
+  @media (hover: hover) {
+    .sv__row:hover { padding-left: 0.5rem; }
   }
   .sv__no {
     display: flex;
