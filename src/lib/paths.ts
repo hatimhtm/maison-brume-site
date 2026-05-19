@@ -14,3 +14,8 @@ export function path(to: string, locale: Locale): string {
 export function other(locale: Locale): Locale {
   return locale === "en" ? "fr" : "en";
 }
+
+/** Base-path-aware static asset URL (public/ files). */
+export function asset(p: string): string {
+  return (BASE + "/" + p.replace(/^\/+/, "")).replace(/([^:]\/)\/+/g, "$1");
+}

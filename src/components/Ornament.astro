@@ -1,0 +1,15 @@
+---
+// A fine eight-point maker's-mark. SVG, scales crisply, costs nothing.
+interface Props {
+  spin?: boolean;
+  class?: string;
+}
+const { spin = false, class: cls = "" } = Astro.props;
+---
+
+<span class={`ornament ${spin ? "ornament--spin" : ""} ${cls}`} aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+    <path d="M12 1 V23 M1 12 H23 M4.2 4.2 L19.8 19.8 M19.8 4.2 L4.2 19.8" />
+    <circle cx="12" cy="12" r="3.4" stroke-width="0.9" />
+  </svg>
+</span>

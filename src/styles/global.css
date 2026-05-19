@@ -202,15 +202,60 @@
     opacity: 1;
     transform: none;
   }
+
+  /* Image reveal — clipped curtain + slow settle. The premium tell. */
+  .reveal--img {
+    transform: none;
+    opacity: 1;
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 1.3s var(--ease);
+  }
+  .reveal--img.is-in { clip-path: inset(0 0 0 0); }
+  .reveal--img img {
+    transform: scale(1.07);
+    transition: transform 1.6s var(--ease);
+  }
+  .reveal--img.is-in img { transform: scale(1); }
+
+  /* SVG ornament — quiet maker's-mark detail */
+  .ornament {
+    display: inline-block;
+    color: var(--color-stone);
+  }
+  .ornament svg {
+    width: clamp(1.1rem, 2.4vw, 1.6rem);
+    height: auto;
+    overflow: visible;
+  }
+  .ornament--spin svg { animation: orn-spin 28s linear infinite; }
+  @keyframes orn-spin {
+    to { transform: rotate(360deg); }
+  }
+}
+
+/* Grain — a fixed, almost-subliminal tactile layer. Pure SVG, ~0 cost. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal {
+  .reveal,
+  .reveal--img {
     opacity: 1 !important;
     transform: none !important;
+    clip-path: none !important;
     transition: none;
   }
+  .reveal--img img { transform: none !important; }
+  .ornament--spin svg { animation: none !important; }
   *,
   *::before,
   *::after {

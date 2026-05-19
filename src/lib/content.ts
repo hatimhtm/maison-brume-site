@@ -82,7 +82,7 @@ export const content = {
     begins: {
       eyebrow: "How it begins",
       title: "No deck. No discovery retainer.",
-      body: "I study your house, then design a tailored concept of your site — yours to see before any commitment. If it moves you, we build it. If it doesn't, you keep the thinking.",
+      body: "I study your business, then design a tailored concept of your site — yours to see before any commitment. If it moves you, we build it. If it doesn't, you keep the thinking.",
     },
     studio: {
       eyebrow: "Studio",
@@ -189,7 +189,7 @@ export const content = {
     begins: {
       eyebrow: "Comment cela commence",
       title: "Pas de présentation. Pas d'acompte de cadrage.",
-      body: "J'étudie votre maison, puis je conçois un concept sur mesure de votre site — à voir avant tout engagement. S'il vous touche, nous le construisons. Sinon, la réflexion vous reste acquise.",
+      body: "J'étudie votre activité, puis je conçois un concept sur mesure de votre site — à voir avant tout engagement. S'il vous touche, nous le construisons. Sinon, la réflexion vous reste acquise.",
     },
     studio: {
       eyebrow: "Le studio",

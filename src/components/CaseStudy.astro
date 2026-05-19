@@ -1,6 +1,6 @@
 ---
 import { content, type Locale, type Slug, WORK_SLUGS, LIVE, waLink } from "../lib/content";
-import { path } from "../lib/paths";
+import { path, asset } from "../lib/paths";
 
 interface Props {
   locale: Locale;
@@ -38,6 +38,17 @@ const wa = waLink(
         {t.work.live} ↗
       </a>
     </header>
+
+    <figure class="cs__shot reveal--img">
+      <img
+        src={asset(`work/${slug}.jpg`)}
+        alt={`${c.name} — live site`}
+        width="1600"
+        height="1000"
+        loading="eager"
+        decoding="async"
+      />
+    </figure>
 
     <dl class="cs__rows">
       {
@@ -80,6 +91,19 @@ const wa = waLink(
     font-variation-settings: "opsz" 144, "SOFT" 70;
   }
   .cs__live { margin-top: clamp(2rem, 4vw, 3rem); }
+  .cs__shot {
+    margin: clamp(3rem, 7vw, 5.5rem) 0 0;
+    overflow: hidden;
+    border: 1px solid var(--color-fog);
+    background: var(--color-paper);
+    aspect-ratio: 16 / 10;
+  }
+  .cs__shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
   .cs__rows {
     margin-top: clamp(4rem, 9vw, 7rem);
     border-top: 1px solid var(--color-fog);
